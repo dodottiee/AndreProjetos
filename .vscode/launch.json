@@ -1,0 +1,71 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "SistemaProdutoApplication",
+            "request": "launch",
+            "mainClass": "br.com.AWEB.sistema_produto.SistemaProdutoApplication",
+            "projectName": "br.com.AWEB-sistema-produto"
+        },
+        {
+            "type": "java",
+            "name": "CatalogoLivrosApplication",
+            "request": "launch",
+            "mainClass": "br.com.aweb.catalogo_livros.CatalogoLivrosApplication",
+            "projectName": "br.com.aweb-catalogo-livros"
+        },
+        {
+            "type": "java",
+            "name": "CommentApplication",
+            "request": "launch",
+            "mainClass": "br.com.aweb.comment.CommentApplication",
+            "projectName": "br.com.aweb-comment"
+        },
+        {
+            "type": "java",
+            "name": "CrudNoDbApplication",
+            "request": "launch",
+            "mainClass": "br.com.aweb.crud_no_db.CrudNoDbApplication",
+            "projectName": "br.com.aweb-crud-no-db"
+        },
+        {
+            "type": "java",
+            "name": "HelloSpringBootApplication",
+            "request": "launch",
+            "mainClass": "br.com.aweb.hello_spring_boot.HelloSpringBootApplication",
+            "projectName": "br.com.aweb-hello-spring-boot"
+        },
+        {
+            "type": "java",
+            "name": "SistemaReservasApplication",
+            "request": "launch",
+            "mainClass": "br.com.aweb.sistema_reservas.SistemaReservasApplication",
+            "projectName": "br.com.aweb-sistema-reservas"
+        },
+        {
+            "type": "java",
+            "name": "SistemaTarefasApplication",
+            "request": "launch",
+            "mainClass": "br.com.aweb.sistema_tarefas.SistemaTarefasApplication",
+            "projectName": "br.com.aweb-sistema-tarefas"
+        },
+        {
+            "type": "java",
+            "name": "SistemaUsuarioApplication",
+            "request": "launch",
+            "mainClass": "br.com.aweb.sistema_usuario.SistemaUsuarioApplication",
+            "projectName": "br.com.aweb-sistema-usuario"
+        }
+    ]
+}
