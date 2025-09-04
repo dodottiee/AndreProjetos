@@ -143,3 +143,9 @@ INSERT INTO TO_DO (title, create_at, dead_line, finished_at) VALUES
 2025-08-27 21:24:42.339471-03:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "drop table[*]"; expected "identifier"; SQL statement:
 drop table [42001-232]
+2025-09-03 19:01:13.010031-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "drop [*]TODO"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, MATERIALIZED, VIEW, ROLE, ALIAS, SCHEMA, ALL OBJECTS, DOMAIN, TYPE, AGGREGATE, SYNONYM"; SQL statement:
+drop TODO [42001-232]
+2025-09-03 19:01:35.883793-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TODO" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.created_at,t1_0.deadline,t1_0.finished_at,t1_0.title from todo t1_0 [42104-232]
