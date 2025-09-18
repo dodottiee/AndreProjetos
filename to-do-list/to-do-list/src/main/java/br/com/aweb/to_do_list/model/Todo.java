@@ -2,7 +2,6 @@ package br.com.aweb.to_do_list.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -17,32 +16,40 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+@ToString
 public class Todo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Size(min = 3, max = 100)
     @NotBlank
-    @Column(nullable = false, length = 100)
+    @Column(length = 100, nullable = false)
     private String title;
-
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
-
     @NotNull
-    @FutureOrPresent
-    @DateTimeFormat(iso = ISO.DATE)
+    //@FutureOrPresent
     @Column(nullable = false)
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate deadline;
-
     @Column(nullable = true)
     private LocalDate finishedAt;
+
+    // public void markHasFinished() {
+    //     this.finishedAt = LocalDate.now();
+    // }
+
 }

@@ -33,8 +33,7 @@ public class TodoController {
     // var alunos = List.of(
     // "Isaac Newton",
     // "Albert Einstein",
-    // "Marie Curie"
-    // );
+    // "Marie Curie");
     // modelAndView.addObject("alunos", alunos);
     // modelAndView.addObject("ehVerdade", true);
     // return modelAndView;
@@ -46,9 +45,10 @@ public class TodoController {
         // modelAndView.addObject("todos", todoRepository.findAll());
         // return modelAndView;
 
-        // return new ModelAndView("list",Map.of("todos",todoRepository.findAll()));
+        // return new ModelAndView("list", Map.of("todos", todoRepository.findAll()));
 
-        return new ModelAndView("list", Map.of("todos", todoRepository.findAll(Sort.by("deadline"))));
+        return new ModelAndView("list", Map.of("todos",
+                todoRepository.findAll(Sort.by("deadline"))));
     }
 
     @GetMapping("/create")
@@ -58,9 +58,14 @@ public class TodoController {
 
     @PostMapping("/create")
     public String create(@Valid Todo todo, BindingResult result) {
-        if (result.hasErrors()) {
-            return "form";
+        // verifica se deadline é anterior a data atual
+        if (todo.getDeadline() != null){
+            if (todo.getDeadline().isBefore(LocalDate.now()))
+                result.rejectValue("deadline", "error.deadline", "A data deve ser hoje ou futura");
         }
+            
+        if (result.hasErrors())
+            return "form";
         todoRepository.save(todo);
         return "redirect:/todo";
     }
@@ -70,16 +75,19 @@ public class TodoController {
         var todo = todoRepository.findById(id);
         if (todo.isPresent() && todo.get().getFinishedAt() == null)
             return new ModelAndView("form", Map.of("todo", todo.get()));
-
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/edit/{id}")
     public String edit(@Valid Todo todo, BindingResult result) {
-        if (result.hasErrors()) {
-            return "form";
-
+        // Verifica se deadline é anterior a data atual
+        if (todo.getDeadline() != null){
+            if(todo.getDeadline().isBefore(LocalDate.now()))
+                result.rejectValue("deadline", "error.deadline", "A data deve ser hoje ou futura");
         }
+            
+        if (result.hasErrors())
+            return "form";
         todoRepository.save(todo);
         return "redirect:/todo";
     }
@@ -89,15 +97,16 @@ public class TodoController {
         var todo = todoRepository.findById(id);
         if (todo.isPresent())
             return new ModelAndView("delete", Map.of("todo", todo.get()));
-
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/delete/{id}")
-    public String edit(Todo todo) {
+    public String delete(Todo todo) {
         todoRepository.delete(todo);
         return "redirect:/todo";
     }
+
+    // todo.markHasFinished();
 
     @PostMapping("/finish/{id}")
     public String finish(@PathVariable Long id) {

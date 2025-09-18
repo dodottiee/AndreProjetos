@@ -1,5 +1,7 @@
 package com.br.aweb.sistema_vendas.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,12 +37,11 @@ public class Produto {
     @Positive(message = "O Preço precisa ser positivo!")
     @NotNull(message = "Precisa digitar um preço!")
     @Column(nullable = false)
-    private Double preco;
+    private BigDecimal preco;
 
     @PositiveOrZero(message = "Quantidade invalida!")
     @NotNull(message = "precisa haver quantidade!")
     @Column(nullable = false)
     private Integer quantidadeEmEstoque;
-
 
 }
