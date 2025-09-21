@@ -25,6 +25,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Solicitante</th>
                     <th scope="col">Descrição do Problema</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Urgência</th>
                     <th scope="col">Data da Solicitação</th>
                     <th scope="col">Data de Finalização</th>
                     <th scope="col">Ações</th>
@@ -35,6 +37,8 @@
                     <th scope="row" th:text="${request.id}">---</th>
                     <td th:text="${request.requesterName}">---</td>
                     <td th:text="${request.problemDescription}">---</td>
+                    <td th:text="${request.maintenanceType.displayName}">---</td>
+                    <td th:text="${request.urgency.displayName}">---</td>
                     <td th:text="${#temporals.format(request.requestTimestamp, 'dd/MM/yyyy HH:mm')}">---</td>
                     <td th:text="${request.finishedTimestamp != null ? #temporals.format(request.finishedTimestamp, 'dd/MM/yyyy HH:mm') : '-'}">---</td>
                     <td>

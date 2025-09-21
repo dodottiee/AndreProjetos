@@ -35,6 +35,26 @@
                     <li th:each="error : ${#fields.errors('problemDescription')}" th:text="${error}" class="text-danger"></li>
                 </ul>
             </div>
+            <div class="mb-3">
+                <label for="maintenanceType" class="form-label">Tipo de Manutenção</label>
+                <select class="form-select" id="maintenanceType" th:field="*{maintenanceType}">
+                    <option value="">Selecione...</option>
+                    <option th:each="type : ${maintenanceTypeOptions}" th:value="${type}" th:text="${type.displayName}"></option>
+                </select>
+                 <ul>
+                    <li th:each="error : ${#fields.errors('maintenanceType')}" th:text="${error}" class="text-danger"></li>
+                </ul>
+            </div>
+            <div class="mb-3">
+                <label for="urgency" class="form-label">Nível de Urgência</label>
+                <select class="form-select" id="urgency" th:field="*{urgency}">
+                    <option value="">Selecione...</option>
+                    <option th:each="urgency : ${urgencyOptions}" th:value="${urgency}" th:text="${urgency.displayName}"></option>
+                </select>
+                <ul>
+                    <li th:each="error : ${#fields.errors('urgency')}" th:text="${error}" class="text-danger"></li>
+                </ul>
+            </div>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
 

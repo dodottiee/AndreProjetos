@@ -9,6 +9,7 @@ import org.springframework.http .HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,16 @@ public class MaintenanceRequestController {
 
     @Autowired
     private MaintenanceRequestRepository maintenanceRequestRepository;
+
+    @ModelAttribute("urgencyOptions")
+    public MaintenanceRequest.Urgency[] getUrgencyOptions() {
+        return MaintenanceRequest.Urgency.values();
+    }
+
+    @ModelAttribute("maintenanceTypeOptions")
+    public MaintenanceRequest.MaintenanceType[] getMaintenanceTypeOptions() {
+        return MaintenanceRequest.MaintenanceType.values();
+    }
 
     @GetMapping
     public ModelAndView list() {
