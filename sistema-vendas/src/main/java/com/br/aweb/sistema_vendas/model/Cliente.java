@@ -36,29 +36,28 @@ public class Cliente {
 
     @NotBlank(message = "O CPF é obrigatório.")
     @CPF(message = "Insira um CPF válido.")
-    @Column(nullable = false, unique = true, length = 14)
+    @Size(min = 11, max = 11)
+    @Column(nullable = false, unique = true, length = 11)
     private String cpf;
 
     @NotBlank(message = "O telefone é obrigatório.")
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false)
     private String telefone;
 
     @NotBlank(message = "O logradouro é obrigatório.")
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false)
     private String logradouro;
 
-    @Column(length = 20)
     private String numero;
 
-    @Column(length = 100)
     private String complemento;
 
     @NotBlank(message = "O bairro é obrigatório.")
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String bairro;
 
     @NotBlank(message = "A cidade é obrigatória.")
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String cidade;
 
     @NotBlank(message = "A UF é obrigatória.")
@@ -67,6 +66,6 @@ public class Cliente {
     private String uf;
 
     @NotBlank(message = "O CEP é obrigatório.")
-    @Column(nullable = false, length = 9)
+    @Column(nullable = false)
     private String cep;
 }
