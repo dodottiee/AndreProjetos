@@ -35,13 +35,14 @@ public class PedidoServices {
         Produto produtoExistente = optinalProduto.get();
         Pedido pedidoExistente = optinalPedido.get();
 
-        if (pedidoExistente.getStatus().compareTo(StatusPedido.ATIVO) != 0) {
+        if (pedidoExistente.getStatus() != StatusPedido.ATIVO) {
             throw new IllegalArgumentException("Pedido não ativo");
         }
         if (produtoExistente.getQuantidadeEmEstoque() < quantidade) {
             throw new IllegalArgumentException("quantidade em estoque insuficiente");
         }
 
-        pedidoExistente.getItens().
+        ItemPedido item = new ItemPedido(produtoExistente,quantidade);
+        item.setPedido(pedidoExistente);
     }
 }
