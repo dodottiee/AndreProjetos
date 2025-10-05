@@ -1,3 +1,4 @@
+// src/main/java/com/br/aweb/sistema_vendas/model/Pedido.java
 package com.br.aweb.sistema_vendas.model;
 
 import java.math.BigDecimal;
@@ -40,8 +41,6 @@ public class Pedido {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
-    // propaga operações de salvar/atualizar/excluir e do orphanRemoval remove
-    // automaticamente itens “órfãos”
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itens = new ArrayList<>();
 
@@ -59,4 +58,21 @@ public class Pedido {
         this.cliente = cliente;
     }
 
+    public void recalcularValorTotal() {
+        this.valorTotal = itens.stream()
+                               .map(ItemPedido::getValorTotal)
+                               .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public void adicionarItem(ItemPedido item) {
+        itens.add(item);
+        item.setPedido(this);
+        recalcularValorTotal();
+    }
+
+    public void removerItem(ItemPedido item) {
+        itens.remove(item);
+        item.setPedido(null);
+        recalcularValorTotal();
+    }
 }
